@@ -1,0 +1,21 @@
+
+#
+include : identifier
+<: relational operator Less Than
+stdio : identifier
+.
+h : identifier
+>: relational operator Greater Than 
+int : keyword 
+main : identifier
+(
+)
+{
+printf : identifier
+(
+"
+hi : identifier
+"
+)
+;
+}
