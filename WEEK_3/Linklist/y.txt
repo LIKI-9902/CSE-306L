@@ -1,7 +1,0 @@
-
- x : identifier
- y : identifier
-+
- z : identifier
-* 
-14: number
