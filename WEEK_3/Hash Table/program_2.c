@@ -2,34 +2,45 @@
 #include<ctype.h> 
 #include<string.h>
 #include<stdlib.h>
+#define size 10
 struct node{
     char name[20];
     struct node *next;
-}hash[100];
+}hash[size];
 int top=0;
 void store_symb_tab(char id[]) 
 { 
-/* Check whether the id is already available in the symbol table, if available,  ignore. otherwise add it.*/
 int temp=0;
-if(top==0){
-    strcpy(hash[top].name,id);
-    top++;
-}
-else{
-    for(int i=0;i<top;i++){
-        if(strcmp(hash[i].name,id)==0){
+int h=top%size;
+for(int i=0;i<top;i++){
+    struct node *ptr=&hash[i];
+    while(ptr!=NULL){
+        if(strcmp(ptr->name,id)==0){
             temp=10;
             break;
         }
+        ptr=ptr->next;
     }
-    if(temp==0){
-        strcpy(hash[top].name,id);   
+}
+if(temp==0){
+    if(strcmp(hash[h].name,"\0")==0){
+        strcpy(hash[h].name,id);
         top++;
     }
+    else{
+        struct node *ptr=&hash[h];
+        while(ptr->next!=NULL){
+            ptr=ptr->next;  
+        }
+        struct node *link=(struct node *)malloc(sizeof(struct node));
+        strcpy(link->name,id);
+        link->next=NULL;
+        ptr->next=link;
     }
+}
 } 
 char  
-keyword[30][30]={"int","while","break","for","do","if","float","char","switch","d ouble","short","long","unsigned","sizeof","else","register","extern","static","auto ","case","break","volatile","enum","typedef"}; 
+keyword[30][30]={"int","while","break","for","do","if","float","char","switch","double","short","long","unsigned","sizeof","else","register","extern","static","auto ","case","break","volatile","enum","typedef"}; 
 char id[20], num[10]; 
 //declare symbol table as a doubly dimensional array of characters. 
 char symb_tab[][20]={};
@@ -152,7 +163,12 @@ int main()
  fclose(fp2); 
  fp3=fopen("symbol_table.txt","w");
  for(int i=0;i<top;i++){
-    fprintf(fp3,"%s\n",hash[i].name);
+    struct node *ptr=&hash[i];
+    while(ptr!=NULL){
+        fprintf(fp3,"%s->",ptr->name);
+        ptr=ptr->next;
+    }
+    fprintf(fp3,"\n");
  }
  fclose(fp3);
  return 0; 
