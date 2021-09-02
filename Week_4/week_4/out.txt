@@ -1,0 +1,23 @@
+int: identifier
+ : 
+main: identifier
+(){
+i: 
+nt: identifier
+ : 
+a: keyword
+;
+a: 
+=: Assignment operator
+5: digit
+;
+h: 
+i: keyword
+;
+}: 
+
+Symbol table:
+
+1. int
+2. main
+3. nt
