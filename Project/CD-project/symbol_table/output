@@ -1,0 +1,27 @@
+ 
+ num : keyword 
+ a : identifier 
+10: number
+,
+ b : identifier 
+12: number 
+ if : keyword 
+(
+ a : identifier
+ relational operator is LT (>) 
+0: number
+)
+{
+ a : identifier 
+0: number
+} 
+ else : keyword 
+{
+ a : identifier
+- 
+1: number
+} 
+ loop : keyword 
+( 
+5: number
+)
